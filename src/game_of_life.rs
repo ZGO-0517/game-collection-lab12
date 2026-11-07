@@ -70,7 +70,17 @@ pub fn print_neighbor_counts(_grid: &Grid) {
 // Set a few cells alive (hardcoded, or entered as `row col` pairs until a blank line),
 // print the grid, then the neighbor counts.
 pub fn play() {
-    todo!("Implement play")
+    let mut grid = new_grid();
+    
+    grid[5][4] = true;
+    grid[5][5] = true;
+    grid[5][6] = true;
+
+    println!("Grid Display:");
+    print_grid(&grid);
+
+    println!("\nNeighbor Counts:");
+    print_neighbor_counts(&grid);
 }
 
 #[cfg(test)]
