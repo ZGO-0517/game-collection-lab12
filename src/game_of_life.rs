@@ -24,8 +24,12 @@ pub fn count_neighbors(_grid: &Grid, _row: usize, _col: usize) -> u8 {
 }
 
 // The rule for one cell: does it live in the next generation?
-pub fn next_state(_alive: bool, _neighbors: u8) -> bool {
-    todo!("Implement next_state")
+pub fn next_state(alive: bool, neighbors: u8) -> bool {
+    match (alive, neighbors) {
+	(true, 2) | (true, 3) => true,
+	(false, 3)	      => true,
+	_		      => false,
+    }
 }
 
 // Debug view: each cell's neighbor count as a digit, one line per row.
@@ -61,4 +65,12 @@ mod tests {
 
     // TODO (student): write the remaining cases from your truth table before you
     // write next_state. At minimum: a live cell with 4 neighbors, a dead cell with 2.
+
+    fn live_4_overpopulation_dies() {
+	assert!(!next_state(true, 4));
+    }
+
+    fn dead_2_stays_dead() {
+	assert!(!next_state(false, 2));
+    }
 }
